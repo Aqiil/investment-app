@@ -1,0 +1,5 @@
+OpenDate, CloseDate, Ticker, Type, Status, Amount, Cost, Value, Growth
+2022-04-08, null, AAPL, buy, open, 3.0, 510.27, 14.4, -2.82
+2022-04-11, null, IBM, buy, open, 1.0, 126.37, -0.19, 0.15
+2022-04-11, null, BTCUSD, buy, open, 1.0, 39527.45, -1025.97, 2.6
+2022-04-14, null, SPY, buy, open, 8.0, 3502.32, 0.0, 0.0

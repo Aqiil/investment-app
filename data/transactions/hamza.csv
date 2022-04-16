@@ -1,0 +1,7 @@
+OpenDate, CloseDate, Ticker, Type, Status, Amount, Cost, Value, Growth
+2022-04-12, null, GME, buy, open, 3.0, 434.61, 0.0, 0.0
+2022-04-12, null, COIN, buy, open, 3.0, 449.55, 0.0, 0.0
+2022-04-12, null, NFLX, buy, open, 2.0, 688.2, 0.0, 0.0
+2022-04-12, null, IBM, buy, open, 2.0, 251.96, 251.96, 0.0
+2022-04-12, null, AAPL, buy, open, 1.0, 167.66, 167.66, 0.0
+2022-04-12, 2022-04-13, IBM, buy, closed, 2.0, 251.96, 251.96, 0.0

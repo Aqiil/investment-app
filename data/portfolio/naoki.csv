@@ -1,0 +1,4 @@
+OpenDate, CloseDate, Ticker, Type, Status, Amount, Cost, Value, Growth
+2022-04-14, null, TM, buy, open, 10.0, 1672.6, 0.0, 0.0
+2022-04-14, null, BRK-B, buy, open, 2.0, 688.66, 0.0, 0.0
+2022-04-14, null, VOO, buy, open, 20.0, 8050.4, 0.0, 0.0
