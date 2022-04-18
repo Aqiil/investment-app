@@ -5,12 +5,30 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+
 public class App {
+    private static JFrame dummyFrame;  //Parent JFrame to hold JOptionPanes
     public static void main(String[] args) throws Exception{
         Scanner scanner = new Scanner(System.in); // scanner object for user io
         HashMap<String, String> userbase = importUserbase(); // hashmap to store login combos for users
         menu(scanner, userbase); // application menu
 
+    }
+
+    // Setup a dummy frame for JOptionPane to use as parent
+    //
+    private static void setupDummyFrame() {
+        if (dummyFrame == null) {
+            dummyFrame = new JFrame();
+        }
+
+        dummyFrame.setVisible(true);
+        dummyFrame.setLocationRelativeTo(null);
+        dummyFrame.setAlwaysOnTop(true);
+        dummyFrame.dispose();
     }
 
     // Application menu
@@ -51,8 +69,17 @@ public class App {
     // Login interface for all users
     //
     public static void login(Scanner scanner, HashMap<String, String>userbase) {
-        System.out.print("Username: ");
-        String username = scanner.nextLine(); 
+        // System.out.print("Username: ");
+        // String username = scanner.nextLine(); 
+
+        // Use dummyFrame to bring JOptionPane to front of screen as Scanner overlaps
+        setupDummyFrame();
+        String username = JOptionPane.showInputDialog(dummyFrame, "Enter username", "User Login", JOptionPane.PLAIN_MESSAGE);
+
+        // check user has not cancelled action
+        if (username == null) {
+            return;
+        }
 
         String password = "";
         boolean found = false;
@@ -66,8 +93,17 @@ public class App {
         }
 
         if (found == true) {
-            System.out.print("Password: ");
-            String inputPass = scanner.nextLine();
+            // Use showConfirmDialog with JPasswordField to protect password input
+            JPasswordField pf = new JPasswordField();
+            int choice = JOptionPane.showConfirmDialog(null, pf, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+            String inputPass = "";
+            if (choice == JOptionPane.OK_OPTION) {
+                inputPass = new String(pf.getPassword());
+                // System.err.println("User input: " + inputPass);
+            }
+
+            // String inputPass1 = JOptionPane.showInputDialog(null, "Enter password", "User Login", JOptionPane.PLAIN_MESSAGE);
             // check password for user is correct
             if (inputPass.equals(password)) {
                 try {
@@ -77,13 +113,13 @@ public class App {
                     // import manager and go to manager dashboard
                     if (userType.equals("manager")) {
                         Manager manager = importManager(username, password);
-                        System.out.println("\nMANAGER LOGIN: " + manager.getName() + "\n");
+                        JOptionPane.showMessageDialog(null, manager.getName() + " logged in","Login Successful", JOptionPane.INFORMATION_MESSAGE);
                         managerDashboard(scanner, manager, userbase);
                     }
                     // import client and go to client dashboard
                     else {
                         Client client = importClient(username, password);
-                        System.out.println("\nCLIENT LOGIN: " + client.getName() + "\n");
+                        JOptionPane.showMessageDialog(null, client.getName() + " logged in","Login Successful", JOptionPane.INFORMATION_MESSAGE);
                         clientDashboard(scanner, userbase, client);
                     }
                 }
@@ -91,34 +127,35 @@ public class App {
                 catch (ManagerNotFoundException m) {
                     // System.err.println(m);
                     Manager manager = new Manager(username, password, "manager");
-                    System.out.println("\nLOGGED IN: " + manager.getName() + "\n");
+                    JOptionPane.showMessageDialog(null, manager.getName() + " logged in","Login Successful", JOptionPane.INFORMATION_MESSAGE);
                     managerDashboard(scanner, manager, userbase);
                 } 
                 // Setup new client if user has just registered
                 catch (ClientNotFoundException c) {
                     // System.err.println(c);
                     Client client = new Client(username, password, "client");
-                    System.out.println("\nLOGGED IN: " + client.getName() + "\n");
+                    JOptionPane.showMessageDialog(null, client.getName() + " logged in","Login Successful", JOptionPane.INFORMATION_MESSAGE);
                     clientDashboard(scanner, userbase, client);
                 }
                 // catch any issues with file import
                 catch (FileNotFoundException f) {
-                    System.out.println("Error importing user\n");
+                    JOptionPane.showMessageDialog(null, f,"Fatal Login Error", JOptionPane.ERROR_MESSAGE); // red cross error icon
                     return;
                 } 
                 // catch any unexpected errors
                 catch (Exception e) {
-                    System.err.println(e);
-                    System.out.println("Error Logging in\n");
+                    // System.err.println(e);
+                    JOptionPane.showMessageDialog(null, e,"Fatal Login Error", JOptionPane.ERROR_MESSAGE); // red cross error icon
                     return;
                 }
             }
             else {
-                System.out.println("Incorrect password\n");
+                JOptionPane.showMessageDialog(null,"Invalid password.","Login Error", JOptionPane.ERROR_MESSAGE); // red cross error icon
+                return;
             }
         }
         else {
-            System.out.println("Unable to find user\n");
+            JOptionPane.showMessageDialog(null,"Invalid username.","Login Error", JOptionPane.WARNING_MESSAGE); // yellow warning icon
             return;
         }
     } // END login

@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Manager extends User{
 
     private ArrayList<Client> clients;
@@ -31,7 +33,7 @@ public class Manager extends User{
         deleteFile(System.getProperty("user.dir") + "\\data\\managers\\" + this.getName() + ".csv"); // delete manager clients details
         deleteFile(System.getProperty("user.dir") + "\\data\\users\\" + this.getName() + ".csv"); // delete manager details
         removeFromUserbase(userbase); // remove credentials from userbase
-        System.out.println("Deleted manager account\n");
+        JOptionPane.showMessageDialog(null,"Manager has been deleted successfully","Account Deleted", JOptionPane.WARNING_MESSAGE); // yellow icon
 
 
     }

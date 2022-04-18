@@ -1,2 +1,2 @@
 Main-Class: App
-Class-Path: lib\json.jar
+Class-Path: lib\json.jar lib\javax.jar

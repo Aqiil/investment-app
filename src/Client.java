@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Client extends User{
         
     private Account account;
@@ -29,7 +31,7 @@ public class Client extends User{
         deleteFile(System.getProperty("user.dir") + "\\data\\portfolio\\" + this.getName() + ".csv"); // delete client portfolio
         deleteFile(System.getProperty("user.dir") + "\\data\\transactions\\" + this.getName() + ".csv"); // delete client transaction history
         removeFromUserbase(userbase);
-        System.out.println("Deleted client account\n");
+        JOptionPane.showMessageDialog(null,"Client has been deleted successfully","Account Deleted", JOptionPane.WARNING_MESSAGE); // yellow icon
     }
 
     // Withdraw from account

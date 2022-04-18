@@ -46,7 +46,7 @@ In order to compile and run the program, you will need to open the command line 
 Compile the program files using javac
 
 ````
-javac -cp lib\json.jar -d bin src\*.java
+javac -cp lib\json.jar;lib\javax.jar -d bin src\*.java
 ````
 
 Create an executable jar file
