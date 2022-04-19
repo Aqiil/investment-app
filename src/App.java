@@ -15,7 +15,6 @@ public class App {
         Scanner scanner = new Scanner(System.in); // scanner object for user io
         HashMap<String, String> userbase = importUserbase(); // hashmap to store login combos for users
         menu(scanner, userbase); // application menu
-
     }
 
     // Setup a dummy frame for JOptionPane to use as parent
@@ -69,13 +68,9 @@ public class App {
     // Login interface for all users
     //
     public static void login(Scanner scanner, HashMap<String, String>userbase) {
-        // System.out.print("Username: ");
-        // String username = scanner.nextLine(); 
-
         // Use dummyFrame to bring JOptionPane to front of screen as Scanner overlaps
         setupDummyFrame();
         String username = JOptionPane.showInputDialog(dummyFrame, "Enter username", "User Login", JOptionPane.PLAIN_MESSAGE);
-
         // check user has not cancelled action
         if (username == null) {
             return;
@@ -83,7 +78,7 @@ public class App {
 
         String password = "";
         boolean found = false;
-
+        
         // check user exists
         for (String i : userbase.keySet()) {
             if (username.equals(i)) {
@@ -100,10 +95,9 @@ public class App {
             String inputPass = "";
             if (choice == JOptionPane.OK_OPTION) {
                 inputPass = new String(pf.getPassword());
-                // System.err.println("User input: " + inputPass);
+                // System.err.println("User input: " + inputPass); // print password input
             }
 
-            // String inputPass1 = JOptionPane.showInputDialog(null, "Enter password", "User Login", JOptionPane.PLAIN_MESSAGE);
             // check password for user is correct
             if (inputPass.equals(password)) {
                 try {
@@ -224,8 +218,13 @@ public class App {
             }
 
         }
-        System.out.print("Username: ");
-        String username = scanner.nextLine(); 
+                
+        setupDummyFrame();
+        String username = JOptionPane.showInputDialog(dummyFrame, "Enter username", "User Login", JOptionPane.PLAIN_MESSAGE);
+        // check user has not cancelled action
+        if (username == null) {
+            return;
+        } 
 
         // check if username is taken
         for (String i : userbase.keySet()) {
@@ -240,13 +239,21 @@ public class App {
 
         // check user password strength is strong
         while (!(valid)) {
-            System.out.print("Password: ");
-            password = scanner.nextLine();
-            System.out.println();
+            // Use showConfirmDialog with JPasswordField to protect password input
+            JPasswordField pf = new JPasswordField();
+            int choice = JOptionPane.showConfirmDialog(null, pf, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+            if (choice == JOptionPane.OK_OPTION) {
+                password = new String(pf.getPassword());
+                // System.err.println("User input: " + password); // print password input
+            }
+            else if (choice == JOptionPane.CANCEL_OPTION) {
+                return;
+            }
+
             valid = checkValidPassword(password);
             if (!(valid)) {
-                System.out.println("Password strength is weak.");
-                System.out.println("Strong passwords must be 8 - 20 characters long with at least one uppercase letter and one number.");
+                JOptionPane.showMessageDialog(null,"Password strength is weak.\nStrong passwords must be 8 - 20 characters long with at least one uppercase letter and one number.","Registration Error", JOptionPane.WARNING_MESSAGE); // yellow icon
             }
         }
 
@@ -748,6 +755,4 @@ public class App {
         scanner.close();
         System.exit(0);
     } // END quit
-
-
 }
