@@ -4,7 +4,7 @@
 
 This program simulates an investment trading application where a user can place trades using real-time data. The program simulates a stock market where securities such as stocks, currencies and crypto can be bought and sold.
 
-The stock, currency and crypto classes have not been utilised at present as I am still researching the differences between these securities. For examples, a user should be able to place buy and sell orders on currency pairs but should only be limited to a buy order on stocks. These features will be implemented at a later stage once I have a more comprehensive understanding of the subtle differences.
+The stock, currency and crypto classes have not been utilised at present as I am still researching the differences between these securities. For examples, a user should be able to place buy and sell orders on currency pairs but should only be limited to a buy order on stocks. These features will be implemented at a later stage once I have a more comprehensive understanding of the subtle differences. In the interim, the FinancialIntrument class will represent all tradeable securities.
 
 ### Features
 
@@ -20,18 +20,14 @@ The stock, currency and crypto classes have not been utilised at present as I am
 ### Dependencies
 
 + org.json
-
-### Edge Cases
-
-* Managers can be assigned to managers
-* 
++ javax.swing
 
 ## To Do
 
 * Client must approve to be under a manager account
 * Change password option
 * Create sell order for currency pairs
-* Create GUI to limit enforce input validation
+* Create GUI to limit input and enforce input validation
   * Plot piechart to visualise open positions
   * Create function to plot timeseries for a security
 * Update historical transaction data to match closing date and profit to initial order using a database
@@ -39,7 +35,7 @@ The stock, currency and crypto classes have not been utilised at present as I am
 
 ## Build Instructions
 
-![](image/README/1650145290398.png)
+![](image/README/1650373803964.png)
 
 In order to compile and run the program, you will need to open the command line from the App folder and do the following:
 

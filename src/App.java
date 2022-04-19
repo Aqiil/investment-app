@@ -223,13 +223,14 @@ public class App {
         String username = JOptionPane.showInputDialog(dummyFrame, "Enter username", "User Login", JOptionPane.PLAIN_MESSAGE);
         // check user has not cancelled action
         if (username == null) {
+            System.out.println("Account registration cancelled");
             return;
         } 
 
         // check if username is taken
         for (String i : userbase.keySet()) {
             if (username.equals(i)) {
-                System.out.println("Username unavailable\n");
+                JOptionPane.showMessageDialog(null,"Username unavailable","Registration Error", JOptionPane.WARNING_MESSAGE); // yellow icon
                 return;
             }
         }
@@ -248,6 +249,7 @@ public class App {
                 // System.err.println("User input: " + password); // print password input
             }
             else if (choice == JOptionPane.CANCEL_OPTION) {
+                System.out.println("Account registration cancelled");
                 return;
             }
 
