@@ -81,29 +81,6 @@ In some instances where the user attempts to close an open position, the API cal
 
 To prevent this issue from occuring, please wait a few seconds before choosing an option that requires an API call or upgrade to the premium API.
 
-## Marking Scheme
-
-**Level 1** (10 marks)
-
-* Standard I/O (keyboard input and printing to terminal).
-* Good design, making sensible use of classes and objects.
-
-**Level 2** (10 marks)
-
-* Sensible use of inheritance, making use of Java's features such as abstract classes and interfaces where necessary.
-* Sensible use of polymorphism.
-
-**Level 3** (10 marks)
-
-* Use of ArrayLists or other classes from Java's Collection Framework.
-* Adequate exception handling.
-* Graphical User Interface.
-* File I/O for features requiring permanent storage.
-
-**Extra** (5 marks)
-
-* Add something special. Do your own research and use programming concepts that go beyond what you have seen in class.
-
 ## Helpful Links
 
 [Alpha Vantage API Documentation](https://www.alphavantage.co/documentation/)
